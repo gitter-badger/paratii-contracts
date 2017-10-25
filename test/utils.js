@@ -72,7 +72,7 @@ export async function setupParatiiContracts () {
   paratiiAvatar = await ParatiiAvatar.new(paratiiRegistry.address)
   paratiiToken = await ParatiiToken.new()
   sendEther = await SendEther.new()
-  videoRegistry = await VideoRegistry.new()
+  videoRegistry = await VideoRegistry.new(paratiiRegistry.address)
   videoStore = await VideoStore.new(paratiiRegistry.address)
   paratiiRegistry.registerAddress('ParatiiAvatar', paratiiAvatar.address)
   paratiiRegistry.registerAddress('ParatiiToken', paratiiToken.address)
