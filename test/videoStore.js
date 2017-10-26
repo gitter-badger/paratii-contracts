@@ -1,4 +1,4 @@
-import { getInfoFromLogs, setupParatiiContracts, ParatiiRegistry, videoRegistry, paratiiAvatar, paratiiToken, videoStore } from './utils.js'
+import { getInfoFromLogs, setupParatiiContracts, ParatiiRegistry, videoRegistry, paratiiAvatar, paratiiToken, videoStore, userRegistry } from './utils.js'
 
 contract('VideoStore', function (accounts) {
 

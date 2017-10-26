@@ -2,11 +2,12 @@ const ParatiiRegistry = artifacts.require('./ParatiiRegistry')
 const ParatiiAvatar = artifacts.require('./ParatiiAvatar')
 const ParatiiToken = artifacts.require('./ParatiiToken')
 const SendEther = artifacts.require('./SendEther')
+const UserRegistry = artifacts.require('./UserRegistry')
 const VideoRegistry = artifacts.require('./VideoRegistry')
 const VideoStore = artifacts.require('./VideoStore')
 export const NULL_HASH = '0x0000000000000000000000000000000000000000'
 
-export let paratiiRegistry, paratiiAvatar, paratiiToken, sendEther, videoRegistry, videoStore
+export let paratiiRegistry, paratiiAvatar, paratiiToken, sendEther, userRegistry, videoRegistry, videoStore
 
 export function getInfoFromLogs (tx, arg, eventName, index = 0) {
   // tx.logs look like this:
@@ -82,6 +83,8 @@ export async function setupParatiiContracts () {
   // give 30 percent of eah video to the redistribution pool
   paratiiRegistry.registerUint('VideoRedistributionPoolShare', web3.toWei(0.3))
 
+  userRegistry = await UserRegistry.new(paratiiRegistry.address)
+  paratiiRegistry.registerAddress('UserRegistry', userRegistry.address)
   paratiiAvatar.addToWhitelist(videoStore.address)
   return paratiiRegistry
 }
